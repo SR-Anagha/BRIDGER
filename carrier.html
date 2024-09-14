@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .interest {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .interest label {
+            flex: 1;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .interest input {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        #careers-container {
+            margin-top: 20px;
+        }
+
+        .career {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .career:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .career h3 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .career p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Explore Your Career Path</h1>
+    </div>
+    <div class="container">
+        <h2>Select Your Interests</h2>
+        <div class="interest">
+            <input type="checkbox" id="tech" name="interest" value="tech">
+            <label for="tech">Technology</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="health" name="interest" value="health">
+            <label for="health">Health</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="arts" name="interest" value="arts">
+            <label for="arts">Arts</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="business" name="interest" value="business">
+            <label for="business">Business</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="gaming" name="interest" value="gaming">
+            <label for="gaming">Gaming</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="travel" name="interest" value="travel">
+            <label for="travel">Travel</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="cooking" name="interest" value="cooking">
+            <label for="cooking">Cooking</label>
+        </div>
+        <div class="interest">
+            <input type="checkbox" id="sports" name="interest" value="sports">
+            <label for="sports">Sports</label>
+        </div>
+        <button class="btn" onclick="showCareers()">Show Careers</button>
+        <div id="careers-container"></div>
+    </div>
+
+    <script>
+
+
+
+    const careers = {
+    tech: [
+        {
+            title: "Software Developer",
+            description: "Software developers design, code, and maintain software programs. They work on a variety of projects, from mobile apps to large-scale enterprise software."
+        },
+        {
+            title: "Data Scientist",
+            description: "Data scientists analyze complex data sets to help organizations make informed decisions. They use statistical techniques and machine learning to extract insights from data."
+        },
+        {
+            title: "Cybersecurity Analyst",
+            description: "Cybersecurity analysts protect organizations from cyber threats. They monitor networks for security breaches, conduct vulnerability assessments, and develop security policies."
+        },
+        {
+            title: "AI Engineer",
+            description: "AI engineers create intelligent systems and applications using machine learning and deep learning techniques. They work on projects like natural language processing, computer vision, and robotics."
+        }
+    ],
+    health: [
+        {
+            title: "Doctor",
+            description: "Doctors diagnose and treat illnesses, prescribe medications, and provide medical advice to patients. They work in various specialties, such as cardiology, dermatology, and pediatrics."
+        },
+        {
+            title: "Nurse",
+            description: "Nurses provide care to patients, administer medications, and assist with medical procedures. They work in hospitals, clinics, and other healthcare settings."
+        },
+        {
+            title: "Pharmacist",
+            description: "Pharmacists dispense medications, counsel patients on the use of prescriptions, and ensure the safe use of medications. They work in pharmacies, hospitals, and clinics."
+        },
+        {
+            title: "Physical Therapist",
+            description: "Physical therapists help patients recover from injuries and improve their physical abilities. They develop treatment plans and provide exercises to aid recovery."
+        }
+    ],
+    arts: [
+        {
+            title: "Graphic Designer",
+            description: "Graphic designers create visual content for various media, including websites, advertisements, and print materials. They use design software to develop layouts and graphics."
+        },
+        {
+            title: "Musician",
+            description: "Musicians create and perform music in various styles and genres. They may work as solo artists or in bands, and often perform live or record in studios."
+        },
+        {
+            title: "Painter",
+            description: "Painters create artworks using various techniques and mediums. They may specialize in areas such as abstract art, realism, or portraiture."
+        },
+        {
+            title: "Actor",
+            description: "Actors perform in theater productions, films, and television shows. They portray characters and bring stories to life through their performances."
+        }
+    ],
+    business: [
+        {
+            title: "Entrepreneur",
+            description: "Entrepreneurs start and run their own businesses. They develop business plans, seek funding, and manage operations to bring their ideas to market."
+        },
+        {
+            title: "Marketing Manager",
+            description: "Marketing managers develop strategies to promote products and services. They conduct market research, plan campaigns, and analyze marketing performance."
+        },
+        {
+            title: "Financial Analyst",
+            description: "Financial analysts assess financial data to help businesses make investment decisions. They analyze economic trends, evaluate financial performance, and create financial models."
+        },
+        {
+            title: "Human Resources Manager",
+            description: "Human resources managers oversee recruitment, employee relations, and training programs. They ensure that the organization's HR policies comply with regulations."
+        }
+    ],
+    gaming: [
+        {
+            title: "Game Developer",
+            description: "Game developers design and create video games for various platforms. They work on game mechanics, storylines, graphics, and user interfaces."
+        },
+        {
+            title: "Esports Player",
+            description: "Esports players compete in professional video game tournaments. They often specialize in specific games and train extensively to improve their skills."
+        },
+        {
+            title: "Game Designer",
+            description: "Game designers create the concepts, rules, and gameplay mechanics for video games. They work closely with developers and artists to bring their ideas to life."
+        },
+        {
+            title: "Game Tester",
+            description: "Game testers play video games to identify bugs and issues. They provide feedback to developers to help improve the game's quality before release."
+        }
+    ],
+    travel: [
+        {
+            title: "Travel Blogger",
+            description: "Travel bloggers explore different destinations and share their experiences through blog posts, videos, and social media. They often collaborate with travel brands and tourism boards."
+        },
+        {
+            title: "Tour Guide",
+            description: "Tour guides lead groups of tourists to various attractions and provide information about the history and significance of the sites. They work in cities, museums, and natural parks."
+        },
+        {
+            title: "Flight Attendant",
+            description: "Flight attendants ensure the safety and comfort of airline passengers. They assist with boarding, provide in-flight services, and respond to emergencies."
+        },
+        {
+            title: "Travel Agent",
+            description: "Travel agents help clients plan and book their trips. They provide information on destinations, arrange transportation and accommodations, and offer travel advice."
+        }
+    ],
+    cooking: [
+        {
+            title: "Chef",
+            description: "Chefs create and prepare dishes in restaurants, hotels, and other food establishments. They often specialize in specific cuisines and manage kitchen staff."
+        },
+        {
+            title: "Food Blogger",
+            description: "Food bloggers share recipes, cooking tips, and food reviews through blogs and social media. They often collaborate with brands and restaurants."
+        },
+        {
+            title: "Pastry Chef",
+            description: "Pastry chefs specialize in creating desserts, pastries, and baked goods. They work in bakeries, restaurants, and hotels."
+        },
+        {
+            title: "Culinary Instructor",
+            description: "Culinary instructors teach cooking techniques and recipes to students. They work in culinary schools, community centers, and online platforms."
+        }
+    ],
+    sports: [
+        {
+            title: "Professional Athlete",
+            description: "Professional athletes compete in sports at the highest levels. They train rigorously and participate in competitions to represent teams or themselves."
+        },
+        {
+            title: "Sports Coach",
+            description: "Sports coaches train and guide athletes to improve their performance. They develop training programs, provide feedback, and motivate their teams."
+        },
+        {
+            title: "Sports Commentator",
+            description: "Sports commentators provide live commentary and analysis during sports events. They work for television networks, radio stations, and online platforms."
+        },
+        {
+            title: "Sports Therapist",
+            description: "Sports therapists help athletes recover from injuries and improve their physical condition. They provide treatments, rehabilitation programs, and preventive care."
+        }
+    ],
+    tech_health: [
+        {
+            title: "Health Informatics Specialist",
+            description: "Health informatics specialists manage and analyze health data. They develop and implement health information systems."
+        },
+        {
+            title: "Biomedical Engineer",
+            description: "Biomedical engineers design and develop medical devices and equipment. They work on projects such as prosthetics, imaging systems, and diagnostic tools."
+        },
+        {
+            title: "Telemedicine Coordinator",
+            description: "Telemedicine coordinators manage remote healthcare services. They ensure the smooth operation of telemedicine platforms and coordinate virtual appointments."
+        }
+    ],
+    tech_arts: [
+        {
+            title: "Multimedia Artist",
+            description: "Multimedia artists create animations, visual effects, and other digital content. They work on video games, movies, and online media."
+        },
+        {
+            title: "UX/UI Designer",
+            description: "UX/UI designers create user-friendly interfaces for websites and applications. They focus on the look and feel as well as the user experience."
+        },
+        {
+            title: "Digital Illustrator",
+            description: "Digital illustrators create illustrations using software. They work on projects like books, advertisements, and online media."
+        }
+    ],
+    tech_business: [
+        {
+            title: "IT Manager",
+            description: "IT managers oversee an organization's technology infrastructure. They manage IT staff, projects, and budgets to ensure efficient operations."
+        },
+        {
+            title: "Tech Entrepreneur",
+            description: "Tech entrepreneurs start and run technology-based businesses. They develop innovative products or services and bring them to market."
+        },
+        {
+            title: "Product Manager",
+            description: "Product managers oversee the development and launch of technology products. They work with cross-functional teams to ensure successful product delivery."
+        }
+    ],
+    tech_gaming: [
+        {
+            title: "Game Developer",
+            description: "Game developers design and create video games for various platforms. They work on game mechanics, storylines, graphics, and user interfaces."
+        },
+        {
+            title: "Game Designer",
+            description: "Game designers create the concepts, rules, and gameplay mechanics for video games. They work closely with developers and artists to bring their ideas to life."
+        },
+        {
+            title: "AI Game Developer",
+            description: "AI game developers create artificial intelligence systems for video games. They work on non-player character behavior, game physics, and procedural content generation."
+        }
+    ],
+    tech_travel: [
+        {
+            title: "Travel App Developer",
+            description: "Travel app developers create mobile applications to assist travelers. They develop features like booking systems, travel guides, and navigation tools."
+        },
+        {
+            title: "Digital Nomad",
+            description: "Digital nomads work remotely using technology while traveling the world. They often work in fields like software development, digital marketing, and online entrepreneurship."
+        },
+        {
+            title: "Virtual Reality Developer",
+            description: "Virtual reality developers create VR experiences for travel and tourism. They develop immersive virtual tours and simulations for destinations."
+        }
+    ],
+    tech_cooking: [
+        {
+            title: "Food Tech Entrepreneur",
+            description: "Food tech entrepreneurs develop technology-driven solutions for the food industry. They work on projects like food delivery apps, smart kitchen appliances, and food waste reduction."
+        },
+        {
+            title: "Culinary Technologist",
+            description: "Culinary technologists use technology to enhance food production and preparation. They work on innovations like 3D food printing, food safety technologies, and culinary automation."
+        },
+        {
+            title: "Recipe Developer",
+            description: "Recipe developers create and test new recipes using technology. They may use software to manage recipes, analyze nutritional content, and optimize cooking methods."
+        }
+    ],
+    tech_sports: [
+        {
+            title: "Sports Data Analyst",
+            description: "Sports data analysts collect and analyze data related to sports performance. They use statistical models and software to provide insights for teams and athletes."
+        },
+        {
+            title: "Sports Technologist",
+            description: "Sports technologists develop and implement technology solutions for sports. They work on projects like wearable fitness trackers, performance analysis tools, and sports simulation software."
+        },
+        {
+            title: "E-sports Analyst",
+            description: "E-sports analysts analyze data from competitive gaming events. They provide insights into player performance, team strategies, and game trends."
+        }
+    ],
+    health_arts: [
+        {
+            title: "Art Therapist",
+            description: "Art therapists use creative expression to help individuals improve their mental health and well-being. They work with clients to explore emotions and reduce stress through art."
+        },
+        {
+            title: "Music Therapist",
+            description: "Music therapists use music to address the emotional, cognitive, and social needs of individuals. They work with clients to achieve therapeutic goals through musical activities."
+        },
+        {
+            title: "Dance Therapist",
+            description: "Dance therapists use movement to help individuals improve their mental and physical health. They work with clients to explore emotions and improve body awareness through dance."
+        }
+    ],
+    health_business: [
+        {
+            title: "Healthcare Administrator",
+            description: "Healthcare administrators manage the operations of healthcare facilities. They oversee staff, budgets, and policies to ensure efficient and effective healthcare delivery."
+        },
+        {
+            title: "Health Consultant",
+            description: "Health consultants provide expert advice to healthcare organizations. They analyze operations, develop strategies, and implement solutions to improve healthcare services."
+        },
+        {
+            title: "Pharmaceutical Sales Representative",
+            description: "Pharmaceutical sales representatives promote and sell medications to healthcare professionals. They provide product information, answer questions, and build relationships with clients."
+        }
+    ],
+    health_gaming: [
+        {
+            title: "Health Game Developer",
+            description: "Health game developers create video games designed to promote health and well-being. They develop games for fitness, mental health, and medical education."
+        },
+        {
+            title: "Rehabilitation Game Designer",
+            description: "Rehabilitation game designers create games to aid in physical and cognitive rehabilitation. They work with therapists to develop engaging and therapeutic game experiences."
+        },
+        {
+            title: "Serious Games Researcher",
+            description: "Serious games researchers study the impact of video games on health and education. They conduct research to understand how games can be used for positive outcomes."
+        }
+    ],
+    health_travel: [
+        {
+            title: "Travel Nurse",
+            description: "Travel nurses provide healthcare services in various locations on short-term assignments. They travel to different healthcare facilities to fill staffing needs."
+        },
+        {
+            title: "Medical Missionary",
+            description: "Medical missionaries provide healthcare services to underserved communities around the world. They work with organizations to deliver medical care and health education."
+        },
+        {
+            title: "Travel Health Specialist",
+            description: "Travel health specialists advise travelers on health risks and precautions. They provide vaccinations, travel health advice, and support for managing health conditions while traveling."
+        }
+    ],
+    health_cooking: [
+        {
+            title: "Dietitian",
+            description: "Dietitians provide nutritional advice and develop meal plans to promote health and manage diseases. They work in hospitals, clinics, and private practice."
+        },
+        {
+            title: "Health Food Chef",
+            description: "Health food chefs create nutritious and delicious meals. They focus on using healthy ingredients and cooking methods to support a balanced diet."
+        },
+        {
+            title: "Nutritionist",
+            description: "Nutritionists study the effects of food on health and well-being. They provide guidance on healthy eating habits and develop nutrition plans for individuals and groups."
+        }
+    ],
+    health_sports: [
+        {
+            title: "Sports Physician",
+            description: "Sports physicians specialize in diagnosing and treating sports-related injuries. They work with athletes to promote physical health and optimize performance."
+        },
+        {
+            title: "Sports Nutritionist",
+            description: "Sports nutritionists develop dietary plans to enhance athletic performance. They provide guidance on nutrition, hydration, and supplements for athletes."
+        },
+        {
+            title: "Exercise Physiologist",
+            description: "Exercise physiologists study the effects of exercise on the body. They develop exercise programs to improve fitness, health, and performance."
+        }
+    ],
+    arts_business: [
+        {
+            title: "Art Director",
+            description: "Art directors oversee the visual style and creative direction of projects. They work in advertising, publishing, and entertainment to create visually compelling content."
+        },
+        {
+            title: "Creative Entrepreneur",
+            description: "Creative entrepreneurs start businesses in the arts and creative industries. They develop innovative products or services and build brands around their creative vision."
+        },
+        {
+            title: "Gallery Manager",
+            description: "Gallery managers run art galleries and exhibitions. They curate collections, organize events, and promote artists to the public and collectors."
+        }
+    ],
+    arts_gaming: [
+        {
+            title: "Game Artist",
+            description: "Game artists create visual elements for video games, including characters, environments, and user interfaces. They use digital tools to bring game concepts to life."
+        },
+        {
+            title: "Concept Artist",
+            description: "Concept artists develop the visual style and design of game elements. They create sketches and illustrations to guide the development of game assets."
+        },
+        {
+            title: "Animator",
+            description: "Animators create movement and behavior for characters and objects in games. They work on animations for gameplay, cutscenes, and special effects."
+        }
+    ],
+    arts_travel: [
+        {
+            title: "Travel Photographer",
+            description: "Travel photographers capture images of destinations and cultures. They work for travel publications, websites, and tourism boards to showcase the beauty of different locations."
+        },
+        {
+            title: "Destination Wedding Photographer",
+            description: "Destination wedding photographers specialize in capturing weddings in exotic locations. They travel to various destinations to document couples' special moments."
+        },
+        {
+            title: "Cultural Heritage Specialist",
+            description: "Cultural heritage specialists work to preserve and promote cultural heritage sites. They develop programs and projects to protect historical and cultural landmarks."
+        }
+    ],
+    arts_cooking: [
+        {
+            title: "Food Stylist",
+            description: "Food stylists create visually appealing presentations of food for photography and video. They work on cookbooks, advertisements, and television shows."
+        },
+        {
+            title: "Culinary Artist",
+            description: "Culinary artists create edible works of art, such as elaborate cakes and sculptures. They use advanced techniques to produce visually stunning and delicious creations."
+        },
+        {
+            title: "Food Photographer",
+            description: "Food photographers capture images of food for cookbooks, magazines, and advertisements. They use lighting and composition techniques to make food look enticing."
+        }
+    ],
+    arts_sports: [
+        {
+            title: "Sports Photographer",
+            description: "Sports photographers capture action shots of sporting events. They work for sports publications, teams, and media outlets to document athletic performances."
+        },
+        {
+            title: "Sports Illustrator",
+            description: "Sports illustrators create artwork related to sports, such as athlete portraits and event posters. They work for magazines, advertising agencies, and sports teams."
+        },
+        {
+            title: "Athletic Event Coordinator",
+            description: "Athletic event coordinators plan and organize sports events. They handle logistics, marketing, and operations to ensure successful and engaging events."
+        }
+    ],
+    business_gaming: [
+        {
+            title: "Game Producer",
+            description: "Game producers manage the development and release of video games. They oversee project timelines, budgets, and team coordination to ensure successful game launches."
+        },
+        {
+            title: "Gaming Marketing Manager",
+            description: "Gaming marketing managers develop strategies to promote video games. They conduct market research, plan campaigns, and analyze marketing performance."
+        },
+        {
+            title: "Esports Manager",
+            description: "Esports managers oversee the operations of esports teams and events. They handle team management, sponsorships, and event planning to support competitive gaming."
+        }
+    ],
+    business_travel: [
+        {
+            title: "Travel Agency Owner",
+            description: "Travel agency owners run businesses that help clients plan and book trips. They develop travel packages, market their services, and manage client relationships."
+        },
+        {
+            title: "Tourism Marketing Manager",
+            description: "Tourism marketing managers promote destinations and tourism services. They develop marketing campaigns, conduct market research, and collaborate with travel brands."
+        },
+        {
+            title: "Event Planner",
+            description: "Event planners organize and coordinate events, such as conferences, weddings, and corporate functions. They handle logistics, vendor coordination, and event promotion."
+        }
+    ],
+    business_cooking: [
+        {
+            title: "Restaurant Owner",
+            description: "Restaurant owners manage the operations of dining establishments. They oversee staff, menus, finances, and customer service to ensure a successful restaurant."
+        },
+        {
+            title: "Food and Beverage Manager",
+            description: "Food and beverage managers oversee the dining services in hotels, resorts, and other establishments. They manage staff, budgets, and customer experiences."
+        },
+        {
+            title: "Catering Manager",
+            description: "Catering managers plan and coordinate catering services for events. They develop menus, manage staff, and ensure high-quality food and service for clients."
+        }
+    ],
+    business_sports: [
+        {
+            title: "Sports Marketing Manager",
+            description: "Sports marketing managers develop strategies to promote sports teams and events. They conduct market research, plan campaigns, and analyze marketing performance."
+        },
+        {
+            title: "Sports Agent",
+            description: "Sports agents represent athletes in contract negotiations, endorsements, and career planning. They build relationships with teams, sponsors, and media to support their clients."
+        },
+        {
+            title: "Sports Facility Manager",
+            description: "Sports facility managers oversee the operations of sports venues. They manage staff, schedules, maintenance, and events to ensure the smooth running of the facility."
+        }
+    ],
+    gaming_travel: [
+        {
+            title: "Gaming Travel Blogger",
+            description: "Gaming travel bloggers explore gaming events and destinations around the world. They share their experiences through blog posts, videos, and social media."
+        },
+        {
+            title: "Esports Event Coordinator",
+            description: "Esports event coordinators plan and organize gaming tournaments and events. They handle logistics, marketing, and operations to ensure successful events."
+        },
+        {
+            title: "Gaming Tour Guide",
+            description: "Gaming tour guides lead groups on tours of famous gaming locations and events. They provide insights and information about the history and culture of gaming."
+        }
+    ],
+    gaming_cooking: [
+        {
+            title: "Gaming Chef",
+            description: "Gaming chefs create themed meals and recipes inspired by video games. They may work on special events, cookbooks, and online content."
+        },
+        {
+            title: "Food Streamer",
+            description: "Food streamers share live cooking sessions and food-related content on streaming platforms. They engage with viewers and build communities around their culinary content."
+        },
+        {
+            title: "Esports Nutritionist",
+            description: "Esports nutritionists develop dietary plans to enhance the performance and health of esports athletes. They provide guidance on nutrition, hydration, and supplements."
+        }
+    ],
+    gaming_sports: [
+        {
+            title: "Esports Coach",
+            description: "Esports coaches train and guide competitive gamers to improve their performance. They develop training programs, provide feedback, and motivate their teams."
+        },
+        {
+            title: "Sports Game Developer",
+            description: "Sports game developers create video games based on sports. They work on game mechanics, graphics, and user interfaces to deliver realistic sports experiences."
+        },
+        {
+            title: "Fantasy Sports Analyst",
+            description: "Fantasy sports analysts provide insights and advice for fantasy sports players. They analyze player performance, team strategies, and game trends."
+        }
+    ],
+    travel_cooking: [
+        {
+            title: "Traveling Chef",
+            description: "Traveling chefs work in different locations around the world, often in luxury resorts, private yachts, or pop-up restaurants. They create culinary experiences for clients."
+        },
+        {
+            title: "Food Tour Guide",
+            description: "Food tour guides lead culinary tours, showcasing local cuisines and food traditions. They provide insights into the history and culture of the food they feature."
+        },
+        {
+            title: "Travel Food Writer",
+            description: "Travel food writers explore and document the culinary offerings of different destinations. They write articles, blog posts, and books about their food adventures."
+        }
+    ],
+    travel_sports: [
+        {
+            title: "Adventure Sports Guide",
+            description: "Adventure sports guides lead activities such as hiking, climbing, and rafting. They ensure the safety and enjoyment of participants while exploring natural environments."
+        },
+        {
+            title: "Sports Tour Operator",
+            description: "Sports tour operators organize trips and tours focused on sporting events and activities. They plan itineraries, arrange accommodations, and provide event tickets."
+        },
+        {
+            title: "Travel Sports Photographer",
+            description: "Travel sports photographers capture images of sporting events and adventures around the world. They work for magazines, travel companies, and sports organizations."
+        }
+    ],
+    cooking_sports: [
+        {
+            title: "Sports Nutrition Chef",
+            description: "Sports nutrition chefs create meals designed to enhance athletic performance. They focus on providing balanced, nutritious meals for athletes."
+        },
+        {
+            title: "Culinary Sports Therapist",
+            description: "Culinary sports therapists use nutrition and cooking to support athletic recovery and performance. They develop dietary plans and provide cooking lessons for athletes."
+        },
+        {
+            title: "Event Catering Chef",
+            description: "Event catering chefs provide food services for sporting events. They develop menus, manage kitchen staff, and ensure high-quality food for attendees."
+        }
+    ],
+    tech_health_arts: [
+        {
+            title: "Health Tech Designer",
+            description: "Health tech designers create user-friendly interfaces for medical devices and health apps. They focus on improving the usability and accessibility of health technologies."
+        },
+        {
+            title: "Medical VR Developer",
+            description: "Medical VR developers create virtual reality experiences for medical training and therapy. They design immersive simulations for healthcare professionals and patients."
+        },
+        {
+            title: "Digital Health Artist",
+            description: "Digital health artists create visual content for health education and awareness campaigns. They use digital media to communicate health information and promote wellness."
+        }
+    ],
+    tech_health_business: [
+        {
+            title: "Health Tech Product Manager",
+            description: "Health tech product managers oversee the development and launch of healthcare technology products. They coordinate between tech teams and healthcare professionals to ensure successful product delivery."
+        },
+        {
+            title: "Healthcare IT Consultant",
+            description: "Healthcare IT consultants provide expertise on technology solutions for healthcare organizations. They help implement and optimize IT systems to improve patient care and operational efficiency."
+        },
+        {
+            title: "Medical Technology Entrepreneur",
+            description: "Medical technology entrepreneurs start and run businesses focused on health tech innovations. They develop new products or services to address healthcare challenges."
+        }
+    ],
+    tech_health_gaming: [
+        {
+            title: "Health Game Developer",
+            description: "Health game developers create games designed to improve health outcomes. They develop interactive experiences that promote physical activity, mental wellness, and medical education."
+        },
+        {
+            title: "Rehabilitation Game Designer",
+            description: "Rehabilitation game designers create games that aid in physical and cognitive rehabilitation. They work with healthcare professionals to develop therapeutic game experiences."
+        },
+        {
+            title: "Health Gamification Specialist",
+            description: "Health gamification specialists design game-based elements for health applications. They create engaging features that motivate users to achieve health-related goals."
+        }
+    ],
+    tech_health_travel: [
+        {
+            title: "Telehealth Travel Coordinator",
+            description: "Telehealth travel coordinators manage remote healthcare services for traveling patients. They coordinate virtual consultations and ensure seamless access to medical care while on the go."
+        },
+        {
+            title: "Medical Tourism App Developer",
+            description: "Medical tourism app developers create applications for patients seeking medical treatments abroad. They design features to facilitate travel, bookings, and healthcare arrangements."
+        },
+        {
+            title: "Health Travel Consultant",
+            description: "Health travel consultants provide advice on healthcare options for travelers. They help clients find medical facilities and services in different destinations."
+        }
+    ],
+    tech_health_cooking: [
+        {
+            title: "Health Food Tech Developer",
+            description: "Health food tech developers create technology solutions for the food industry focused on health and nutrition. They work on innovations like smart kitchen appliances and nutritional analysis tools."
+        },
+        {
+            title: "Food Health Informatics Specialist",
+            description: "Food health informatics specialists manage and analyze data related to food and nutrition. They develop systems for tracking dietary information and improving food safety."
+        },
+        {
+            title: "Culinary Health Tech Entrepreneur",
+            description: "Culinary health tech entrepreneurs develop technology-driven solutions for healthy eating. They create products or services that promote balanced diets and wellness through technology."
+        }
+    ],
+    tech_health_sports: [
+        {
+            title: "Sports Health Tech Specialist",
+            description: "Sports health tech specialists develop technology solutions to enhance athletic performance and recovery. They work on wearable devices, performance analytics, and health monitoring systems."
+        },
+        {
+            title: "Athletic Health App Developer",
+            description: "Athletic health app developers create applications for tracking and improving sports performance. They design features for monitoring fitness, nutrition, and injury prevention."
+        },
+        {
+            title: "Sports Health Data Analyst",
+            description: "Sports health data analysts analyze data from athletic performance and health monitoring systems. They provide insights to optimize training and recovery strategies."
+        }
+    ],
+    tech_arts_business: [
+        {
+            title: "Creative Tech Entrepreneur",
+            description: "Creative tech entrepreneurs start and run businesses that merge technology with the arts. They develop innovative products or services that enhance creative expression and media."
+        },
+        {
+            title: "Digital Media Manager",
+            description: "Digital media managers oversee the creation and distribution of digital content. They work with tech teams and artists to manage online presence and multimedia projects."
+        },
+        {
+            title: "Tech-Driven Art Consultant",
+            description: "Tech-driven art consultants advise on the use of technology in art projects. They help integrate digital tools and platforms into creative practices and exhibitions."
+        }
+    ],
+    tech_arts_gaming: [
+        {
+            title: "Game Art Director",
+            description: "Game art directors oversee the visual design and artistic direction of video games. They work with artists and designers to create compelling game environments and characters."
+        },
+        {
+            title: "VR Game Artist",
+            description: "VR game artists create visual assets for virtual reality games. They design immersive environments and interactive elements that enhance the gaming experience."
+        },
+        {
+            title: "Interactive Media Designer",
+            description: "Interactive media designers develop multimedia content that engages users through technology. They create interactive experiences for games, apps, and digital art."
+        }
+    ],
+    tech_arts_travel: [
+        {
+            title: "Travel App Designer",
+            description: "Travel app designers create user-friendly interfaces for travel applications. They focus on enhancing the user experience and incorporating artistic elements into travel tech."
+        },
+        {
+            title: "Cultural Tech Specialist",
+            description: "Cultural tech specialists develop technology solutions for promoting and preserving cultural heritage. They work on projects related to digital exhibitions and virtual tours."
+        },
+        {
+            title: "Travel Tech Creative Director",
+            description: "Travel tech creative directors oversee the artistic and creative aspects of travel technology projects. They ensure that travel apps and platforms provide a visually appealing and engaging experience."
+        }
+    ],
+    tech_arts_cooking: [
+        {
+            title: "Food Tech Creative Designer",
+            description: "Food tech creative designers develop visually appealing and innovative food technology products. They work on projects like smart kitchen devices and food presentation solutions."
+        },
+        {
+            title: "Culinary Experience Developer",
+            description: "Culinary experience developers create interactive and immersive culinary experiences using technology. They design virtual cooking classes and digital food adventures."
+        },
+        {
+            title: "Gastronomy App Designer",
+            description: "Gastronomy app designers create applications focused on food and cooking. They develop features for recipe management, cooking techniques, and food exploration."
+        }
+    ],
+    tech_arts_sports: [
+        {
+            title: "Sports Tech Creative Developer",
+            description: "Sports tech creative developers design innovative technology solutions for sports. They work on projects like interactive sports experiences and immersive training tools."
+        },
+        {
+            title: "Virtual Sports Experience Designer",
+            description: "Virtual sports experience designers create virtual reality and augmented reality experiences for sports fans and athletes. They develop engaging simulations and interactive sports environments."
+        },
+        {
+            title: "Sports Media Technologist",
+            description: "Sports media technologists work on the technology behind sports broadcasting and media. They develop tools and platforms for live sports coverage and digital content creation."
+        }
+    ],
+    tech_business_gaming: [
+        {
+            title: "Gaming Tech Entrepreneur",
+            description: "Gaming tech entrepreneurs start and run businesses focused on gaming technology. They develop new gaming products, platforms, or services to innovate in the gaming industry."
+        },
+        {
+            title: "Gaming Business Analyst",
+            description: "Gaming business analysts analyze market trends and business opportunities in the gaming industry. They provide insights to guide strategic decisions and game development."
+        },
+        {
+            title: "Game Development Project Manager",
+            description: "Game development project managers oversee the production of video games. They coordinate between tech teams, designers, and business stakeholders to ensure successful project delivery."
+        }
+    ],
+    tech_business_travel: [
+        {
+            title: "Travel Tech Product Manager",
+            description: "Travel tech product managers oversee the development of technology solutions for the travel industry. They manage product lifecycles and work with teams to create innovative travel tools."
+        },
+        {
+            title: "Travel Technology Consultant",
+            description: "Travel technology consultants provide expertise on technology solutions for travel companies. They help implement systems to improve booking, customer experience, and operational efficiency."
+        },
+        {
+            title: "Travel Tech Startup Founder",
+            description: "Travel tech startup founders create new technology ventures focused on travel. They develop innovative solutions to enhance the travel experience and disrupt traditional travel models."
+        }
+    ],
+    tech_business_cooking: [
+        {
+            title: "Culinary Tech Startup Founder",
+            description: "Culinary tech startup founders create new ventures at the intersection of technology and cooking. They develop innovative products and services to enhance the culinary experience."
+        },
+        {
+            title: "Food Tech Product Manager",
+            description: "Food tech product managers oversee the development and launch of technology solutions for the food industry. They manage projects related to smart kitchen appliances and food innovation."
+        },
+        {
+            title: "Food Tech Business Strategist",
+            description: "Food tech business strategists develop strategies for technology-driven food companies. They analyze market trends and opportunities to guide business growth and product development."
+        }
+    ],
+    tech_business_sports: [
+        {
+            title: "Sports Tech Product Manager",
+            description: "Sports tech product managers oversee the development of technology solutions for sports. They manage product development and work with teams to create innovative sports technologies."
+        },
+        {
+            title: "Sports Technology Consultant",
+            description: "Sports technology consultants provide expertise on tech solutions for sports organizations. They help implement systems to enhance performance, fan engagement, and operational efficiency."
+        },
+        {
+            title: "Sports Tech Venture Capitalist",
+            description: "Sports tech venture capitalists invest in technology startups focused on sports. They support emerging companies and innovations that improve sports performance and fan experience."
+        }
+    ],
+    tech_gaming_travel: [
+        {
+            title: "Travel Gaming App Developer",
+            description: "Travel gaming app developers create applications that combine travel and gaming. They design interactive experiences for travelers that incorporate gaming elements."
+        },
+        {
+            title: "Gaming Travel Tech Specialist",
+            description: "Gaming travel tech specialists develop technology solutions for gaming-related travel experiences. They create tools for organizing gaming events and enhancing travel experiences for gamers."
+        },
+        {
+            title: "Interactive Travel Games Designer",
+            description: "Interactive travel games designers create games that engage users during their travels. They develop experiences that combine travel exploration with interactive gaming elements."
+        }
+    ],
+    tech_gaming_cooking: [
+        {
+            title: "Cooking Game Developer",
+            description: "Cooking game developers create video games focused on culinary experiences. They design interactive cooking simulations and food-related gameplay."
+        },
+        {
+            title: "Gastronomy VR Developer",
+            description: "Gastronomy VR developers create virtual reality experiences related to cooking and food. They design immersive culinary experiences for users to explore and interact with."
+        },
+        {
+            title: "Food Gaming Experience Designer",
+            description: "Food gaming experience designers develop engaging and interactive experiences that combine food and gaming. They create games that focus on culinary skills and food culture."
+        }
+    ],
+    tech_gaming_sports: [
+        {
+            title: "Esports Tech Developer",
+            description: "Esports tech developers create technology solutions for competitive gaming. They work on tools and platforms that enhance the esports experience for players and fans."
+        },
+        {
+            title: "Sports Gaming App Designer",
+            description: "Sports gaming app designers create applications that combine sports and gaming. They design features for interactive sports simulations and fantasy sports games."
+        },
+        {
+            title: "Interactive Sports Games Developer",
+            description: "Interactive sports games developers create video games that simulate real-world sports. They focus on developing engaging and realistic sports gameplay experiences."
+        }
+    ],
+    tech_travel_cooking: [
+        {
+            title: "Culinary Travel Tech Innovator",
+            description: "Culinary travel tech innovators develop technology solutions that enhance culinary travel experiences. They create apps and devices that guide users to unique food experiences while traveling."
+        },
+        {
+            title: "Food Travel App Developer",
+            description: "Food travel app developers create applications that help users discover and experience local cuisine during their travels. They design features for finding restaurants and food tours."
+        },
+        {
+            title: "Travel Culinary Experience Designer",
+            description: "Travel culinary experience designers create interactive experiences related to food and travel. They develop virtual or augmented reality experiences that explore global cuisines."
+        }
+    ],
+    tech_travel_sports: [
+        {
+            title: "Travel Sports Tech Developer",
+            description: "Travel sports tech developers create technology solutions for sports-related travel. They design tools and apps for managing travel arrangements for athletes and sports events."
+        },
+        {
+            title: "Sports Travel App Designer",
+            description: "Sports travel app designers create applications focused on sports travel and events. They design features for booking tickets, managing itineraries, and accessing sports-related content."
+        },
+        {
+            title: "Interactive Sports Travel Experience Creator",
+            description: "Interactive sports travel experience creators develop immersive experiences that combine sports and travel. They create engaging content and tools for sports enthusiasts traveling to events."
+        }
+    ],
+    tech_cooking_sports: [
+        {
+            title: "Sports Nutrition Tech Developer",
+            description: "Sports nutrition tech developers create technology solutions that support athletic nutrition. They design tools for tracking dietary intake and optimizing nutrition for sports performance."
+        },
+        {
+            title: "Cooking Sports App Developer",
+            description: "Cooking sports app developers create applications that integrate culinary and sports interests. They design features for tracking recipes, meal planning, and sports nutrition."
+        },
+        {
+            title: "Athlete Meal Planning Specialist",
+            description: "Athlete meal planning specialists develop meal plans and cooking strategies tailored to athletes. They focus on combining culinary expertise with sports nutrition needs."
+        }
+    ],
+    health_arts_business: [
+        {
+            title: "Health Arts Entrepreneur",
+            description: "Health arts entrepreneurs create businesses at the intersection of health and the arts. They develop innovative solutions for using art in healthcare settings to improve patient well-being."
+        },
+        {
+            title: "Healthcare Arts Manager",
+            description: "Healthcare arts managers oversee programs that integrate art into healthcare environments. They work on projects that enhance patient experiences and support therapeutic practices."
+        },
+        {
+            title: "Arts in Health Program Coordinator",
+            description: "Arts in health program coordinators manage initiatives that use art to promote health and wellness. They design and implement programs that engage patients and healthcare providers."
+        }
+    ],
+    health_arts_gaming: [
+        {
+            title: "Health Gaming Content Creator",
+            description: "Health gaming content creators develop games focused on health and wellness. They design interactive experiences that promote healthy behaviors and mental well-being."
+        },
+        {
+            title: "Art-Based Health Games Designer",
+            description: "Art-based health games designers create games that combine artistic elements with health-focused gameplay. They develop visually engaging experiences that support mental and physical health."
+        },
+        {
+            title: "Therapeutic Gaming Art Specialist",
+            description: "Therapeutic gaming art specialists design games that use art and interactive elements for therapeutic purposes. They work on projects that help users manage stress and mental health."
+        }
+    ],
+    health_arts_travel: [
+        {
+            title: "Health Arts Travel Curator",
+            description: "Health arts travel curators organize exhibitions and events that explore the intersection of health and the arts. They create immersive experiences for travelers interested in health-focused art."
+        },
+        {
+            title: "Cultural Health Arts Consultant",
+            description: "Cultural health arts consultants provide expertise on integrating art into health and wellness tourism. They design programs that offer artistic and therapeutic experiences for travelers."
+        },
+        {
+            title: "Health Arts Experience Designer",
+            description: "Health arts experience designers create immersive and interactive experiences combining health and art. They develop projects that engage audiences in exploring health through artistic mediums."
+        }
+    ],
+    health_arts_cooking: [
+        {
+            title: "Health Culinary Arts Specialist",
+            description: "Health culinary arts specialists focus on integrating culinary arts with health and nutrition. They develop programs and products that combine cooking with health education and therapy."
+        },
+        {
+            title: "Gastronomy Health Consultant",
+            description: "Gastronomy health consultants advise on incorporating culinary arts into health and wellness programs. They work on projects that promote healthy eating through artistic food presentations."
+        },
+        {
+            title: "Culinary Arts Health Innovator",
+            description: "Culinary arts health innovators develop new ways to use culinary arts for health benefits. They create solutions that combine cooking techniques with health-focused initiatives."
+        }
+    ],
+    health_business_gaming: [
+        {
+            title: "Health Gaming Business Strategist",
+            description: "Health gaming business strategists develop strategies for gaming companies focused on health and wellness. They analyze market trends and opportunities to guide product development and business growth."
+        },
+        {
+            title: "Healthcare Gaming Entrepreneur",
+            description: "Healthcare gaming entrepreneurs create businesses that use gaming to promote health and wellness. They develop innovative products and services at the intersection of gaming and healthcare."
+        },
+        {
+            title: "Gaming Health Solutions Manager",
+            description: "Gaming health solutions managers oversee the development of gaming products designed to support health and wellness. They coordinate projects that integrate gaming with therapeutic applications."
+        }
+    ],
+    health_business_travel: [
+        {
+            title: "Health Travel Consultant",
+            description: "Health travel consultants provide expertise on travel solutions for health and wellness. They design programs and services that combine travel with health-focused experiences."
+        },
+        {
+            title: "Healthcare Travel Business Manager",
+            description: "Healthcare travel business managers oversee operations for companies providing health-related travel services. They manage projects and strategies to enhance health travel experiences."
+        },
+        {
+            title: "Wellness Travel Innovator",
+            description: "Wellness travel innovators create new approaches to integrating health and travel. They develop programs and services that combine travel with wellness and therapeutic experiences."
+        }
+    ],
+    health_business_cooking: [
+        {
+            title: "Health Culinary Business Consultant",
+            description: "Health culinary business consultants advise on integrating culinary arts with health-focused business strategies. They develop solutions that combine food, health, and business development."
+        },
+        {
+            title: "Culinary Health Business Manager",
+            description: "Culinary health business managers oversee operations for companies focused on health-oriented culinary products and services. They manage business strategies and development in this niche market."
+        },
+        {
+            title: "Healthy Cooking Business Innovator",
+            description: "Healthy cooking business innovators create new business models focused on healthy cooking and nutrition. They develop products and services that promote health through culinary practices."
+        }
+    ],
+    health_gaming_travel: [
+        {
+            title: "Health Gaming Travel Developer",
+            description: "Health gaming travel developers create interactive experiences that combine health, gaming, and travel. They design applications and platforms that promote wellness through engaging travel-based games."
+        },
+        {
+            title: "Therapeutic Travel Game Designer",
+            description: "Therapeutic travel game designers develop games that integrate therapeutic elements with travel experiences. They create engaging content that supports health and wellness during travel."
+        },
+        {
+            title: "Health-focused Travel Games Curator",
+            description: "Health-focused travel games curators organize and manage games that promote health and wellness in travel contexts. They create and oversee interactive experiences for health-conscious travelers."
+        }
+    ],
+    health_gaming_cooking: [
+        {
+            title: "Health Cooking Game Developer",
+            description: "Health cooking game developers create games focused on healthy cooking and nutrition. They design interactive experiences that promote healthy eating habits through gameplay."
+        },
+        {
+            title: "Gastronomy Wellness Game Designer",
+            description: "Gastronomy wellness game designers develop games that combine culinary arts with wellness. They create engaging experiences that promote healthy cooking and eating habits."
+        },
+        {
+            title: "Cooking Health Games Innovator",
+            description: "Cooking health games innovators create new gaming experiences centered around healthy cooking. They design interactive games that encourage nutritious eating through culinary challenges."
+        }
+    ],
+    health_travel_cooking: [
+        {
+            title: "Health-focused Culinary Travel Specialist",
+            description: "Health-focused culinary travel specialists design travel experiences that highlight healthy culinary practices. They create itineraries and programs that combine travel with nutritious cooking experiences."
+        },
+        {
+            title: "Healthy Travel Culinary Consultant",
+            description: "Healthy travel culinary consultants provide expertise on incorporating healthy cooking into travel experiences. They develop programs that offer healthy dining options during travel."
+        },
+        {
+            title: "Culinary Wellness Travel Designer",
+            description: "Culinary wellness travel designers create travel experiences centered around culinary wellness. They develop itineraries and programs that promote healthy eating and cooking during travel."
+        }
+    ],
+    health_travel_sports: [
+        {
+            title: "Health Sports Travel Planner",
+            description: "Health sports travel planners design travel programs that integrate sports and health. They create itineraries for athletes and sports enthusiasts that combine training, wellness, and travel."
+        },
+        {
+            title: "Sports Wellness Travel Specialist",
+            description: "Sports wellness travel specialists provide expertise on integrating wellness into sports travel. They design programs that support athlete health and performance during travel."
+        },
+        {
+            title: "Wellness Sports Travel Coordinator",
+            description: "Wellness sports travel coordinators manage travel arrangements for sports teams and individuals with a focus on health and wellness. They ensure travel plans support optimal performance and recovery."
+        }
+    ],
+    health_cooking_sports: [
+        {
+            title: "Sports Nutrition Culinary Expert",
+            description: "Sports nutrition culinary experts combine expertise in sports nutrition with culinary skills. They develop meal plans and cooking techniques that support athletic performance and recovery."
+        },
+        {
+            title: "Athlete Nutrition and Cooking Coach",
+            description: "Athlete nutrition and cooking coaches provide guidance on nutrition and cooking for athletes. They create meal plans and teach cooking techniques that enhance sports performance."
+        },
+        {
+            title: "Culinary Sports Health Specialist",
+            description: "Culinary sports health specialists focus on integrating culinary arts with sports health. They develop programs and products that combine cooking with sports nutrition and performance."
+        }
+    ],
+    
+    "tech_health_arts_business_gaming_travel_cooking_sports": [
+        {
+            "title": "Health Tech Innovation Consultant",
+            "description": "Health tech innovation consultants focus on integrating cutting-edge technology into healthcare systems and services. They work with tech developers, healthcare providers, and business leaders to create solutions that improve patient care, enhance artistic presentations in health communications, and innovate in sports medicine applications. They may also explore ways to make health-related travel more efficient and enjoyable."
+        },
+        {
+            "title": "Interactive Health and Wellness Experience Designer",
+            "description": "Interactive health and wellness experience designers create immersive and engaging health experiences using technology, art, and design. They develop interactive media and virtual reality experiences that combine elements of health education, culinary arts, and sports training, while also addressing business aspects like user engagement and market trends."
+        },
+        {
+            "title": "Culinary Health Tech Specialist",
+            "description": "Culinary health tech specialists design and develop technology solutions for the culinary industry, focusing on health and wellness. They work on smart kitchen devices, health-focused recipe apps, and innovative cooking techniques that blend technology, health, and culinary arts. They may also collaborate with sports nutritionists to create tailored meal plans."
+        },
+        {
+            "title": "Sports and Travel Tech Innovator",
+            "description": "Sports and travel tech innovators create technology solutions that enhance the sports experience for travelers. They develop apps and systems that integrate sports performance data with travel logistics, offering personalized recommendations and improvements for athletes and sports enthusiasts on the go. Their work combines aspects of technology, travel, sports, and business."
+        },
+        {
+            "title": "Creative Director for Health and Wellness Media",
+            "description": "Creative directors for health and wellness media oversee the artistic and strategic direction of content related to health, fitness, and culinary arts. They work on campaigns and media projects that incorporate elements of technology, sports, and travel, aiming to promote healthy lifestyles through innovative and visually compelling content."
+        },
+        {
+            "title": "Tech-Enhanced Culinary Sports Experiences Coordinator",
+            "description": "Tech-enhanced culinary sports experiences coordinators design and manage events that combine sports, culinary arts, and technology. They organize competitions, cooking demonstrations, and sports events that leverage tech innovations to enhance participant and audience experiences. They also handle business aspects such as sponsorships and event management."
+        },
+        {
+            "title": "Virtual Reality Travel and Sports Specialist",
+            "description": "Virtual reality travel and sports specialists develop immersive VR experiences that allow users to explore sports events and travel destinations virtually. They combine elements of gaming, travel, sports, and tech to create engaging and interactive environments, providing users with unique and memorable experiences."
+        },
+        {
+            "title": "Health and Wellness Gaming Developer",
+            "description": "Health and wellness gaming developers create video games that focus on promoting health, fitness, and well-being. They design games that integrate aspects of health education, sports training, and culinary challenges, leveraging technology and artistic design to engage users in improving their health."
+        }
+    ]
+
+};
+
+
+
+
+
+
+
+
+
+        function showCareers() {
+            const selectedInterests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(checkbox => checkbox.value);
+            const careersContainer = document.getElementById("careers-container");
+            careersContainer.innerHTML = ""; // Clear previous results
+            
+            if (selectedInterests.length === 0) {
+                careersContainer.innerHTML = "<p>Please select at least one interest.</p>";
+                return;
+            }
+
+            // Create a combined key for multiple interests
+            const combinedKey = selectedInterests.join('_');
+
+            if (careers[combinedKey]) {
+                careers[combinedKey].forEach(career => {
+                    const careerDiv = document.createElement("div");
+                    careerDiv.className = "career";
+                    careerDiv.innerHTML = `<h3>${career.title}</h3><p>${career.description}</p>`;
+                    careersContainer.appendChild(careerDiv);
+                });
+            } else {
+                careersContainer.innerHTML = "<p>No careers found for the selected interests.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
