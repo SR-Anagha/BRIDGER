@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            line-height: 1.5;
+           
+        }
+
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form {
+            margin-bottom: 20px;
+        }
+
+        .form label,
+        .form input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .form button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .results h2 {
+            margin-bottom: 10px;
+        }
+
+        .results p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .good-human {
+            background-color: #DFF2BF;
+            color: #4F8A10;
+        }
+
+        .join-community {
+            background-color: #FFBABA;
+            color: #D8000C;
+        }
+
+        .join-community button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .join-community button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Environmental Carbon Footprint Calculator</h1>
+        <div class="form">
+            <label for="electricity">Electricity Usage (kWh/year):</label>
+            <input type="number" id="electricity" placeholder="Enter kWh/year">
+
+            <label for="gas">Natural Gas Usage (therms/year):</label>
+            <input type="number" id="gas" placeholder="Enter therms/year">
+
+            <label for="mileage">Mileage (miles/year):</label>
+            <input type="number" id="mileage" placeholder="Enter miles/year">
+
+            <button onclick="calculateCarbonFootprint()">Calculate</button>
+        </div>
+
+        <div class="results">
+            <h2>Your Estimated Carbon Footprint:</h2>
+            <p id="result">-</p>
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            // Get input values
+            const electricity = parseFloat(document.getElementById('electricity').value);
+            const gas = parseFloat(document.getElementById('gas').value);
+            const mileage = parseFloat(document.getElementById('mileage').value);
+
+            // Constants for carbon footprint calculations (example values)
+            const electricityCarbonFactor = 0.5; // kg CO2 per kWh
+            const gasCarbonFactor = 5.0; // kg CO2 per therm
+            const mileageCarbonFactor = 0.2; // kg CO2 per mile
+
+            // Calculate carbon footprint
+            const electricityFootprint = electricity * electricityCarbonFactor;
+            const gasFootprint = gas * gasCarbonFactor;
+            const mileageFootprint = mileage * mileageCarbonFactor;
+
+            const totalFootprint = electricityFootprint + gasFootprint + mileageFootprint;
+
+            // Display result
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = totalFootprint.toFixed(2) + ' kg CO2/year';
+
+            // Compare with threshold and provide feedback
+            const feedbackElement = document.getElementById('feedback');
+            if (totalFootprint < 1600) {
+                feedbackElement.innerHTML = '<div class="feedback good-human">You are a good human!</div>';
+            } else {
+                feedbackElement.innerHTML = '<div class="feedback join-community">Your carbon footprint is high. Join our eco-friendly community to learn how to reduce it.<br><a href="/join_community"><button>Join Now</button></a></div>';
+            }
+        }
+
+        function joinCommunity() {
+            alert('Thank you for joining our eco-friendly community!');
+            // Here you can add functionality to redirect to the community page or handle the join action
+        }
+    </script>
+</body>
+</html>
