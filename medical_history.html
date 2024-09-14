@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient History</title>
+  <style>
+    /* Your CSS styles go here */
+    body {
+      font-family: Arial, sans-serif;
+     
+            
+    }
+    
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    #date-picker,
+    #get-history {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ddd;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medical History</h1>
+  <input type="date" id="date-picker">
+  <button id="get-history">Get History</button>
+  <div id="history-table"></div>
+  <script>
+    /* Your JavaScript code goes here */
+    const datePicker = document.getElementById('date-picker');
+    const getHistoryButton = document.getElementById('get-history');
+    const historyTable = document.getElementById('history-table');
+
+    getHistoryButton.addEventListener('click', function() {
+      const selectedDate = datePicker.value;
+  
+      // Replace with actual logic to fetch data from server-side script (consider security)
+      // Sample data (replace with fetched data)
+      const patientHistoryData = [
+        {
+          date: "2024-07-10",
+          healthIssues: "Headache, Fever",
+          treatment: "Paracetamol, Rest",
+        },
+        {
+          date: "2024-06-15",
+          healthIssues: "Stomach ache",
+          treatment: "Antacids, Dietary changes",
+        },
+      ];
+  
+      // Clear existing table content
+      historyTable.innerHTML = "";
+  
+      if (patientHistoryData.length === 0) {
+        historyTable.textContent = "No history found for selected date.";
+        return;
+      }
+  
+      // Create table header
+      const tableHead = document.createElement('thead');
+      const tableRow = document.createElement('tr');
+      tableRow.innerHTML = `<th>Date</th><th>Health Issues</th><th>Treatment</th>`;
+      tableHead.appendChild(tableRow);
+      historyTable.appendChild(tableHead);
+  
+      // Create table body with patient history data
+      const tableBody = document.createElement('tbody');
+      patientHistoryData.forEach(history => {
+        const tableRow = document.createElement('tr');
+        tableRow.innerHTML = `<td>${history.date}</td><td>${history.healthIssues}</td><td>${history.treatment}</td>`;
+        tableBody.appendChild(tableRow);
+      });
+      historyTable.appendChild(tableBody);
+    });
+  </script>
+</body>
+</html>
