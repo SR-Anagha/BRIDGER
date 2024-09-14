@@ -1,0 +1,327 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridger</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            line-height: 1.5;
+            background-image: url('https://www.achievers.com/wp-content/uploads/2022/11/Achievers-EmployeesBuildingTrust.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-right: 1px solid #fff;
+        }
+
+        .navbar a:last-child {
+            border-right: none;
+        }
+
+        .navbar a:hover {
+            background-color: #222;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            margin-right: 0px;
+        }
+
+        .navbar .logo img {
+            height: 90px;
+            width: auto;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .navbar .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Main Content styles */
+        main {
+            padding-top: 80px;
+        }
+
+        .section {
+            padding: 50px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .section p {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            color: #666;
+        }
+
+        .section-content {
+            text-align: center;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #222;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0;
+            }
+
+            .navbar a {
+                display: block;
+                padding: 15px 0;
+                text-align: center;
+                border-right: none;
+            }
+
+            .navbar .profile {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .navbar .profile-img {
+                margin: 0 auto;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .image-grid img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="navbar">
+    <div class="container">
+        <a href="#" class="logo"><img src="https://www.shutterstock.com/image-vector/illustration-merging-bridge-shaking-hands-600nw-2246546869.jpg" alt="Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="/airline" target="_blank">Environment</a></li>
+                <li><a href="/flight"target="_blank">Healthcare</a></li>
+                <li><a href="/passenger"target="_blank">Education</a></li>
+                <li><a href="/reservation"target="_blank">Socio-Educational</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+        <div class="profile">
+            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Profile" class="profile-img">
+            <span>Welcome, User!</span>
+        </div>
+    </div>
+</header>
+
+
+<!-- Main Content -->
+<main>
+    <section id="home" class="section">
+        <div class="container">
+            <h2>Welcome to Bridger</h2>
+            <p>"Empowering Lives: Your Gateway to a Greener, Healthier, Educated, and Prosperous Future"</p>
+            <div class="image-grid">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230620175013/Environmental-Issues-.webp" alt="Image 1">
+                <img src="https://pbs.twimg.com/media/EosqDPOUwAA4WQ8.jpg:large" alt="Image 2">
+                <img src="https://i.ytimg.com/vi/u-zcnVN5yU8/sddefault.jpg" alt="Image 3">
+               
+            </div>
+        </div>
+    </section>
+
+    <section id="airline" class="section">
+        <div class="container">
+            <h2>Environment Issues</h2>
+            <p>Creating communities and gamifying eco-friendly challenges can effectively address environmental issues by fostering engagement and encouraging sustainable practices. By designing challenges that promote activities like reducing plastic usage, planting trees, and saving energy, and incorporating gamification elements such as points, badges, leaderboards, and social sharing, participants are motivated to take action. Education, tracking progress, collaboration with organizations, and regular feedback ensure the initiatives remain impactful and engaging, ultimately contributing to a healthier environment.</p>
+            <div class="image-grid">
+                <img src="https://c8.alamy.com/comp/2GF32KJ/sunset-over-the-industrial-cityfactory-chimneys-smokeenvironmental-problem-of-environmental-and-atmospheric-pollutionclimate-changeenvironmental-d-2GF32KJ.jpg" alt="environment 1">
+                <img src="https://d540vms5r2s2d.cloudfront.net/mad/uploads/mad_blog_608004271273e1619002407.png" alt="environment2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkbshbUzlHtEYOwK70y_q9PRxl6jN2p8gA3-6ZYMR0la2Qt4aZ_ae34ZbCtlUFf8xVCZg&usqp=CAU" alt="Airline Image 3">
+                <div class="button-container">
+                    <a href="/airline"target="_blank">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flight" class="section">
+        <div class="container">
+            <h2>Healthcare Issues</h2>
+            <p>Our platform offers a comprehensive solution for managing patient health information. We securely store medical histories and track upcoming checkups, ensuring that patients stay informed about their healthcare needs. Additionally, we provide an interactive chatbot that allows patients to discuss their symptoms and concerns. While our bot does not diagnose or offer medical solutions, it generates detailed reports with personalized suggestions on which specialists to consult, helping patients find the right doctors for their needs.</p>
+            <div class="image-grid">
+                <img src="https://www.shutterstock.com/shutterstock/photos/616603904/display_1500/stock-photo-medical-patient-report-form-record-history-information-word-616603904.jpg" alt="helth Image 1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLpikAAy-E17qoYKhxDkagaaOXqJJvwCJ_A&s" alt="health Image 2">
+                <img src="https://assets-wp-cdn.onsurity.com/wp/wp-content/uploads/2020/11/27184642/Preventive-Health-Checkups-1-1024x1024.png" alt="health Image 3">
+                <div class="button-container">
+                    <a href="/flight"target="_blank">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="passenger" class="section">
+        <div class="container">
+            <h2>Education Barrier</h2>
+            <p>Our platform is dedicated to overcoming educational barriers by offering courses and learning materials in local languages, a feature that is often lacking in many online education platforms. Recognizing the challenges faced by rural communities, we aim to make quality education accessible to all. Additionally, we provide a career guidance system that identifies students' interests and strengths, offering personalized roadmaps to help them pursue careers that align with their passions and abilities.</p>
+            <div class="image-grid">
+                <img src="https://www.eurokidsindia.com/blog/wp-content/uploads/2023/12/overcoming-language-barriers.jpg" alt="education Image 1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0pdGVIIs4slLMlKi_vLzurkVoizVW4qK7w&s" alt="education Image 2">
+                <img src="https://s3-ap-south-1.amazonaws.com/blogmindler/bloglive/wp-content/uploads/2022/10/19131559/tw-181.png" alt="education Image 3">
+                <div class="button-container">
+                    <a href="/passenger"target="_blank">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation" class="section">
+        <div class="container">
+            <h2>Socio-Economical Disparties</h2>
+            <p>Our platform is designed to address socio-economic challenges by providing a supportive and confidential environment through our advanced chatbot. Individuals facing these issues can engage in conversation with our bot, which is pre-trained with a touch of human emotion, making it feel like a friend. This allows users to discuss their concerns without the hesitation they might feel when talking to another person. Our chatbot listens, empathizes, and offers guidance, helping users find appropriate resources and support to improve their socio-economic situations.</p>
+            <div class="image-grid">
+                <img src="https://st3.depositphotos.com/3343629/12861/i/450/depositphotos_128617668-stock-photo-power-money-social-economy.jpg" alt="socio Image 1">
+                <img src="https://miro.medium.com/v2/resize:fit:1000/0*453JeehKq9jedjpz.png" alt="socio Image 2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGxwFkYBsAoUmL4QP1t5jLoQDKCB150T-5Fg&s" alt="socio Image 3">
+                <div class="button-container">
+                    <a href="/reservation" target="_blank">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ticket" class="section">
+        <div class="container">
+            <h2>About</h2>
+            <p>Our platform offers a holistic approach to addressing key societal challenges. We provide comprehensive healthcare management by storing medical histories, tracking upcoming checkups, and offering a chatbot for symptom discussions that suggests appropriate specialists. In education, we bridge gaps by delivering content in local languages and offering personalized career guidance and roadmaps. We also tackle socio-economic issues with a compassionate chatbot designed to support and guide individuals through their challenges. Additionally, our platform is committed to environmental sustainability, implementing solutions to reduce ecological impact and promote green practices.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Bridger. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
