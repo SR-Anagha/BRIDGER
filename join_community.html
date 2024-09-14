@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Friendly Challenges</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            line-height: 1.5;
+           
+        }
+
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .challenges .challenge {
+            margin-bottom: 20px;
+        }
+
+        .challenges button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .challenges button:hover {
+            background-color: #45a049;
+        }
+
+        .badges {
+            margin-top: 20px;
+        }
+
+        .badge {
+            margin-bottom: 10px;
+        }
+
+        .badge img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eco-Friendly Challenges</h1>
+        <div id="challenges" class="challenges">
+            <div class="challenge">
+                <p>Challenge 1: Reduce your electricity usage by 10% this month.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 2: Use public transportation or carpool at least once a week.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 3: Plant a tree or start a small garden.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 4: Reduce plastic use by switching to reusable products.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 5: Participate in a local cleanup event.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 6: Switch to a plant-based diet for a week.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+            <div class="challenge">
+                <p>Challenge 7: Use energy-efficient appliances.</p>
+                <button onclick="completeChallenge(this)">Done</button>
+            </div>
+        </div>
+        <div id="badges" class="badges">
+            <div class="badge">
+                <img id="badge1" src="data:image/jpeg;base64,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" alt="Badge 1" style="display: none;">
+                <p>Eco Warrior Badge</p>
+            </div>
+            <div class="badge">
+                <img id="badge2" src="https://cdn-icons-png.flaticon.com/512/11881/11881958.png" alt="Badge 2" style="display: none;">
+                <p>Green Champion Badge</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedChallenges = 0;
+
+        function completeChallenge(button) {
+            button.disabled = true;
+            button.textContent = 'Completed';
+            completedChallenges += 1;
+
+            if (completedChallenges === 5) {
+                document.getElementById('badge1').style.display = 'block';
+            }
+
+            if (completedChallenges === 7) {
+                document.getElementById('badge2').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
