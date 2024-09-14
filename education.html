@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Career helper Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts Link For Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #E3F2FD;
+    }
+    .chatbot {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fff;
+      border-radius: 0;
+      overflow: hidden;
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                  0 32px 64px -48px rgba(0,0,0,0.5);
+      transition: all 0.1s ease;
+    }
+    .chatbot header {
+      padding: 16px;
+      position: relative;
+      text-align: center;
+      color: #fff;
+      background: #724ae8;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .chatbot header span {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      display: block;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    header h2 {
+      font-size: 2rem;
+    }
+    .chatbot header .heading {
+      font-size: 1.5rem;
+      margin-top: 5px;
+      color: #fff;
+    }
+    .chatbot .chatbox {
+      overflow-y: auto;
+      height: calc(100% - 70px); /* Adjust height to fit below the header */
+      padding: 20px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+      background: #fff;
+      border-radius: 25px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 25px;
+    }
+    .chatbox .chat {
+      display: flex;
+      list-style: none;
+    }
+    .chatbox .outgoing {
+      margin: 20px 0;
+      justify-content: flex-end;
+    }
+    .chatbox .incoming span {
+      width: 32px;
+      height: 32px;
+      color: #fff;
+      cursor: default;
+      text-align: center;
+      line-height: 32px;
+      align-self: flex-end;
+      background: #724ae8;
+      border-radius: 4px;
+      margin: 0 10px 7px 0;
+    }
+    .chatbox .chat p {
+      white-space: pre-wrap;
+      padding: 12px 16px;
+      border-radius: 10px 10px 0 10px;
+      max-width: 75%;
+      color: #fff;
+      font-size: 1rem;
+      background: #724ae8;
+    }
+    .chatbox .incoming p {
+      border-radius: 10px 10px 10px 0;
+    }
+    .chatbox .chat p.error {
+      color: #721c24;
+      background: #f8d7da;
+    }
+    .chatbox .incoming p {
+      color: #000;
+      background: #f2f2f2;
+    }
+    .chatbot .chat-input {
+      display: flex;
+      gap: 5px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 10px 20px;
+      border-top: 1px solid #ddd;
+    }
+    .chat-input textarea {
+      height: 55px;
+      width: 100%;
+      border: none;
+      outline: none;
+      resize: none;
+      max-height: 180px;
+      padding: 15px;
+      font-size: 1rem;
+    }
+    .chat-input span {
+      align-self: flex-end;
+      color: #724ae8;
+      cursor: pointer;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      font-size: 1.35rem;
+    }
+    .chat-input textarea:valid ~ span {
+      visibility: visible;
+    }
+
+    @media (max-width: 490px) {
+      .chatbot {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+      }
+      .chatbot .chatbox {
+        height: calc(100% - 70px);
+        padding: 25px 15px;
+      }
+      .chatbot .chat-input {
+        padding: 5px 15px;
+      }
+      .chatbot header span {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbot">
+    <header>
+      <h2>Career Choosing Guide</h2>
+      <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+    <ul class="chatbox">
+      <li class="chat incoming">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <p>Hi there 👋<br>I am here to help you to choose your carrer and which field to focus on?</p>
+      </li>
+    </ul>
+    <div class="chat-input">
+      <textarea placeholder="Let's start..." spellcheck="false" required></textarea>
+      <span id="send-btn" class="material-symbols-rounded">send</span>
+    </div>
+  </div>
+
+  <script>
+    const closeBtn = document.querySelector(".close-btn");
+    const chatbox = document.querySelector(".chatbox");
+    const chatInput = document.querySelector(".chat-input textarea");
+    const sendChatBtn = document.querySelector(".chat-input span");
+
+    const responses = {
+      "hello": "hello,ok tell me which is your favorite subject",
+      "mathematices": "oh nice,it's my goodness that your favorite subject is mathematices<br>ok,now which area excites you the most ",
+      "tech": "Wow that is fantastic",
+      "technology and it": "then are best choices for you Software Developer\nData Scientist\nCybersecurity Analyst\nIT Project Manager",
+      "healthcare and medicine": "Doctor (various specialties)\nNurse\nPhysical Therapist\nMedical Researcher",
+      "business and finance": "Financial Analyst\nMarketing Manager\nHuman Resources Specialist\nManagement Consultant",
+      "education and academia": "Teacher\nProfessor\nEducation Administrator\nAcademic Researcher",
+      "arts and media": "Graphic Designer\nJournalist\nActor/Actress\nPhotographer",
+      "engineering": "May I know your strengths?",
+      "data structures": "Computer Science and Engineering",
+      "legal and law enforcement": "Lawyer\nPolice Officer\nParalegal\nCriminologist",
+      "social and community services": "Social Worker\nCounselor\nNonprofit Administrator\nCommunity Health Worker",
+      "science and research": "Biologist\nChemist\nEnvironmental Scientist\nAstronomer",
+      "skilled trades": "Electrician\nPlumber\nCarpenter\nHVAC Technician",
+      "key points to consider": "Outline the specific skills, qualifications, and educational requirements needed for the job. This might include degrees, certifications, or specific technical skills.\n\nConsider how the career choice might impact lifestyle factors such as work-life balance, flexibility, and potential stress levels.\n\nHighlight opportunities for ongoing learning, skill development, and professional training within the field.\n\nDiscuss what professionals find rewarding about the job, as well as any challenges or potential drawbacks associated with the career."
+    };
+
+    const createChatLi = (message, className) => {
+      const chatLi = document.createElement("li");
+      chatLi.classList.add("chat", className);
+      let chatContent = className === "outgoing" ? '<p></p>' : '<span class="material-symbols-outlined">smart_toy</span><p></p>';
+      chatLi.innerHTML = chatContent;
+      chatLi.querySelector("p").textContent = message;
+      return chatLi;
+    }
+
+    const handleChat = () => {
+      const userMessage = chatInput.value.trim().toLowerCase();
+      if (!userMessage) return;
+
+      chatInput.value = "";
+      chatInput.style.height = '55px';
+
+      chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+      chatbox.scrollTo(0, chatbox.scrollHeight);
+
+      setTimeout(() => {
+        let response = responses[userMessage] || "I'm not sure about the prompt you entered";
+
+        const incomingChatLi = createChatLi(response, "incoming");
+        chatbox.appendChild(incomingChatLi);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+      }, 600);
+    }
+
+    chatInput.addEventListener("input", () => {
+      chatInput.style.height = '55px';
+      chatInput.style.height = `${chatInput.scrollHeight}px`;
+    });
+
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+        e.preventDefault();
+        handleChat();
+      }
+    });
+
+    sendChatBtn.addEventListener("click", handleChat);
+    closeBtn.addEventListener("click", () => document.querySelector(".chatbot").style.display = 'none');
+
+    // Automatically open the chatbot on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".chatbot").style.display = 'block';
+    });
+  </script>
+</body>
+</html>
