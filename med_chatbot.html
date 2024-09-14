@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Health Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts Link For Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #E3F2FD;
+    }
+    .chatbot-toggler {
+      display: none;
+    }
+    .chatbot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 0;
+      overflow: hidden;
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                  0 32px 64px -48px rgba(0,0,0,0.5);
+      transition: all 0.1s ease;
+    }
+    .chatbot header {
+      padding: 16px 0;
+      position: relative;
+      text-align: center;
+      color: #fff;
+      background: #724ae8;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .chatbot header span {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      display: block;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    header h2 {
+      font-size: 1.4rem;
+    }
+    .chatbot .chatbox {
+      overflow-y: auto;
+      height: calc(100% - 112px);
+      padding: 30px 20px 100px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+      background: #fff;
+      border-radius: 25px;
+    }
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 25px;
+    }
+    .chatbox .chat {
+      display: flex;
+      list-style: none;
+    }
+    .chatbox .outgoing {
+      margin: 20px 0;
+      justify-content: flex-end;
+    }
+    .chatbox .incoming span {
+      width: 32px;
+      height: 32px;
+      color: #fff;
+      cursor: default;
+      text-align: center;
+      line-height: 32px;
+      align-self: flex-end;
+      background: #724ae8;
+      border-radius: 4px;
+      margin: 0 10px 7px 0;
+    }
+    .chatbox .chat p {
+      white-space: pre-wrap;
+      padding: 12px 16px;
+      border-radius: 10px 10px 0 10px;
+      max-width: 75%;
+      color: #fff;
+      font-size: 0.95rem;
+      background: #724ae8;
+    }
+    .chatbox .incoming p {
+      border-radius: 10px 10px 10px 0;
+    }
+    .chatbox .chat p.error {
+      color: #721c24;
+      background: #f8d7da;
+    }
+    .chatbox .incoming p {
+      color: #000;
+      background: #f2f2f2;
+    }
+    .chatbot .chat-input {
+      display: flex;
+      gap: 5px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 3px 20px;
+      border-top: 1px solid #ddd;
+    }
+    .chat-input textarea {
+      height: 55px;
+      width: 100%;
+      border: none;
+      outline: none;
+      resize: none;
+      max-height: 180px;
+      padding: 15px 15px 15px 0;
+      font-size: 0.95rem;
+    }
+    .chat-input span {
+      align-self: flex-end;
+      color: #724ae8;
+      cursor: pointer;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      visibility: hidden;
+      font-size: 1.35rem;
+    }
+    .chat-input textarea:valid ~ span {
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbot">
+    <header>
+      <h2>Health Chatbot</h2>
+      <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+    <ul class="chatbox">
+      <li class="chat incoming">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <p>Hi there 👋<br>How can I help you today?</p>
+      </li>
+    </ul>
+    <div class="chat-input">
+      <textarea placeholder="Enter your symptoms..." spellcheck="false" required></textarea>
+      <span id="send-btn" class="material-symbols-rounded">send</span>
+    </div>
+  </div>
+
+  <script>
+    const closeBtn = document.querySelector(".close-btn");
+    const chatbox = document.querySelector(".chatbox");
+    const chatInput = document.querySelector(".chat-input textarea");
+    const sendChatBtn = document.querySelector(".chat-input span");
+
+    const responses = {
+      "headache": "It sounds like you have a headache. You might want to consult a general practitioner. Make sure to stay hydrated and rest. If the pain is severe or persists, see a doctor.",
+      "fever": "For a fever, it's best to see a general practitioner. Keep track of your temperature and stay hydrated. If your fever is very high or lasts more than a couple of days, seek medical attention.",
+      "stomach ache": "A stomach ache could be a sign of many things. It's best to see a gastroenterologist if the pain is persistent or severe. Avoid heavy meals and stay hydrated.",
+      "rash": "A rash can be caused by various factors. It's best to consult a dermatologist. Avoid scratching the rash and try to keep the area clean and dry.",
+      "back pain": "For back pain, you might want to see an orthopedist or a physiotherapist. Avoid heavy lifting and try to rest as much as possible.",
+      "cough": "A persistent cough should be checked by a pulmonologist. Drink warm fluids and avoid smoking or inhaling irritants.",
+      "sore throat": "A sore throat can be caused by a viral or bacterial infection. It's best to see an ENT specialist. Gargle with warm salt water and drink plenty of fluids. If symptoms persist, seek medical attention.",
+      "ear pain": "Ear pain can indicate an infection or other issue. It's best to consult an ENT specialist. Avoid inserting anything into the ear and keep it dry. Seek medical help if the pain is severe or accompanied by fever.",
+      "joint pain": "Joint pain can be due to various causes, including arthritis. Consult a rheumatologist for a proper diagnosis. Rest the affected joint and apply ice to reduce swelling.",
+      "shortness of breath": "Shortness of breath can be a serious symptom. It's important to see a pulmonologist or cardiologist. Avoid strenuous activities and seek immediate medical attention if it worsens.",
+      "dizziness": "Dizziness can be caused by various factors, including dehydration or inner ear issues. Consult a general practitioner or an ENT specialist. Sit or lie down until the dizziness passes, and stay hydrated.",
+      "chest pain": "Chest pain can be a sign of a serious condition, such as heart problems. It's crucial to see a cardiologist immediately. Avoid physical exertion and seek emergency medical help if the pain is severe.",
+      "nausea": "Nausea can be due to various reasons, including infections or digestive issues. It's best to consult a general practitioner. Stay hydrated and eat light, bland foods. If nausea persists, seek medical attention.",
+      "eye irritation": "Eye irritation can be due to infections or allergies. Consult an ophthalmologist for a proper diagnosis. Avoid rubbing your eyes and use lubricating eye drops to relieve discomfort.",
+      "fever and cough": "A fever and cough together may indicate an infection such as the flu or pneumonia. Consult a general practitioner or a pulmonologist. Stay hydrated, rest, and monitor your symptoms. Seek medical attention if your condition worsens.",
+      "headache and dizziness": "Headache and dizziness can be caused by various factors, including dehydration or migraines. It's best to consult a neurologist for a proper diagnosis. Rest in a quiet, dark room and stay hydrated. Seek medical help if symptoms persist or worsen.",
+      "rash and fever": "A rash and fever together can indicate an infection or allergic reaction. Consult a dermatologist or general practitioner. Avoid scratching the rash and monitor your temperature. Seek medical attention if symptoms worsen."
+    };
+
+    closeBtn.addEventListener("click", () => {
+      document.querySelector(".chatbot").style.transform = "scale(0)";
+    });
+
+    sendChatBtn.addEventListener("click", () => {
+      let userMessage = chatInput.value.trim();
+      if (userMessage) {
+        addChat("outgoing", userMessage);
+        chatInput.value = "";
+        setTimeout(() => {
+          let botResponse = getBotResponse(userMessage);
+          addChat("incoming", botResponse);
+        }, 1000);
+      }
+    });
+
+    function addChat(type, message) {
+      let chatLi = document.createElement("li");
+      chatLi.classList.add("chat", type);
+      let chatContent = type === "incoming" ? `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>` : `<p>${message}</p>`;
+      chatLi.innerHTML = chatContent;
+      chatbox.appendChild(chatLi);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+      let response = responses[message.toLowerCase()];
+      return response ? response : "I'm not sure how to help with that. Please consult a healthcare professional.";
+    }
+  </script>
+</body>
+</html>
