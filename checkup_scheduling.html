@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Reminder System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        input {
+            display: block;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            width: 50%;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Reminder System</h1>
+        <div>
+            <h2>Set Medical Checkup Reminder</h2>
+            <input type="datetime-local" id="checkupTime">
+            <button onclick="setCheckupReminder()">Set Checkup Reminder</button>
+        </div>
+        <div>
+            <h2>Set Medication Reminder</h2>
+            <input type="text" id="medicineName" placeholder="Medicine Name">
+            <input type="datetime-local" id="medicineTime">
+            <button onclick="setMedicineReminder()">Set Medicine Reminder</button>
+        </div>
+    </div>
+    <script>
+        function setCheckupReminder() {
+            const checkupTime = new Date(document.getElementById('checkupTime').value).getTime();
+            const currentTime = new Date().getTime();
+            const timeDifference = checkupTime - currentTime;
+
+            if (timeDifference > 0) {
+                setTimeout(() => {
+                    showNotification('Medical Checkup Reminder', 'It\'s time for your medical checkup.');
+                }, timeDifference);
+                alert('Medical checkup reminder set!');
+            } else {
+                alert('Please choose a future date and time for the reminder.');
+            }
+        }
+
+        function setMedicineReminder() {
+            const medicineName = document.getElementById('medicineName').value;
+            const medicineTime = new Date(document.getElementById('medicineTime').value).getTime();
+            const currentTime = new Date().getTime();
+            const timeDifference = medicineTime - currentTime;
+
+            if (medicineName && timeDifference > 0) {
+                setTimeout(() => {
+                    showNotification('Medicine Reminder', `It's time to take your medicine: ${medicineName}.`);
+                }, timeDifference);
+                alert('Medicine reminder set!');
+            } else {
+                alert('Please provide a valid medicine name and a future date and time for the reminder.');
+            }
+        }
+
+        function showNotification(title, message) {
+            if (Notification.permission === 'granted') {
+                new Notification(title, {
+                    body: message,
+                });
+            } else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        new Notification(title, {
+                            body: message,
+                        });
+                    }
+                });
+            }
+        }
+
+        // Request notification permission on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (Notification.permission !== 'granted') {
+                Notification.requestPermission();
+            }
+        });
+    </script>
+</body>
+</html>
